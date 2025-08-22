@@ -1,0 +1,44 @@
+{
+    "configurations": [
+        {
+            "name": "STM32F105",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "${workspaceFolder}/Core/Inc",
+                "${workspaceFolder}/Core/Src", 
+                "${workspaceFolder}/mercura/inc/**",
+                "${workspaceFolder}/mercura/src/**",
+                "${workspaceFolder}/Drivers/STM32F1xx_HAL_Driver/Inc/**",
+                "${workspaceFolder}/Drivers/CMSIS/Device/ST/STM32F1xx/Include",
+                "${workspaceFolder}/Drivers/CMSIS/Include",
+                "${workspaceFolder}/FATFS/inc",
+                "${workspaceFolder}/FATFS/src"
+            ],
+            "defines": [
+                "USE_HAL_DRIVER",
+                "STM32F105xC",
+                "_WATCHDOG",
+                "_GESTION_ODOMETRE", 
+                "_BLUETOOTH",
+                "_RAMPE_AUTONOME",
+                "_PROJECTEUR_BT",
+                "_DATA_BT_CALSSIQUE_SPP",
+                "_BT_CLASSIQUE",
+                "_WIFI_BT_ARRET_SPA",
+                "_DEBUG_WIFI_BT"
+            ],
+            "compilerPath": "/usr/bin/arm-none-eabi-gcc",
+            "cStandard": "gnu11",
+            "cppStandard": "gnu++14",
+            "intelliSenseMode": "linux-gcc-arm",
+            "browse": {
+                "path": [
+                    "${workspaceFolder}",
+                    //"/usr/arm-none-eabi/include"
+                ],
+                "limitSymbolsToIncludedHeaders": true
+            }
+        }
+    ],
+    "version": 4
+}

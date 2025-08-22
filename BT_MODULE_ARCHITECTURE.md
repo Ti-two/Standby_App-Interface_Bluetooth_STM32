@@ -21,8 +21,8 @@ The `app_manage_BT` module handles the **application-level Bluetooth communicati
   - `WRD_KEY_ASK_BT` ('key?'): Key request from remote device
   - `WRD_KEY_BT` ('key.'): Key response with authentication data
   - `WRD_KEY_CAPP_BT` ('capp'): Application command frames
-  - `WRD_DATA_1_BT` ('da1='): Data transmission frames
-  - `WRD_BTN_BT` ('btn='): Button command frames
+  - `WRD_DATA_1_BT` ('da1='): Data transmission frames used as keepalive
+  - `WRD_BTN_BT` ('btn='): Button command frames: not used  b
 
 #### 1.2 Data Management
 - **Power Control**: Manages power output commands for up to 4 channels (`HWI_NB_POWER_BT_CMD_RAMPE`)

@@ -1,0 +1,23 @@
+{
+    "C_Cpp.intelliSenseEngine": "default",
+    "C_Cpp.errorSquiggles": "disabled",
+    "C_Cpp.autocomplete": "default",
+    "C_Cpp.suggestSnippets": true,
+    "C_Cpp.default.includePath": [
+        "${workspaceFolder}/**"
+    ],
+    "C_Cpp.default.browse.path": [
+        "${workspaceFolder}"
+    ],
+    "C_Cpp.default.defines": [
+        "STM32F105xC",
+        "USE_HAL_DRIVER"
+    ],
+    "C_Cpp.default.compilerPath": "/usr/bin/arm-none-eabi-gcc",
+    "C_Cpp.default.cStandard": "gnu11",
+    "C_Cpp.default.intelliSenseMode": "linux-gcc-arm",
+    "files.associations": {
+        "*.h": "c",
+        "*.c": "c"
+    }
+}
