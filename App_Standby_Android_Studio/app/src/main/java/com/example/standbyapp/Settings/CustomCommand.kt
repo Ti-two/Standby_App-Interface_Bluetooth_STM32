@@ -6,9 +6,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
 import kotlinx.serialization.Serializable
 
-/**
- * Represents a custom command with its visual and functional properties
- */
+// Data class representing a custom command with visual and functional properties for STM32 communication
 @Serializable
 data class CustomCommand(
     val id: Int,
@@ -22,7 +20,7 @@ data class CustomCommand(
     val description: String = "", // Optional description
     val isEnabled: Boolean = true // Whether the command is enabled
 ) {
-    // Converts hex color to Compose Color
+    // Converts hex color string to Compose Color object
     fun getColor(): Color {
         return try {
             Color(android.graphics.Color.parseColor(colorHex))
@@ -31,7 +29,7 @@ data class CustomCommand(
         }
     }
     
-    // Validates that command parameters are correct
+    // Validates command parameters are within acceptable ranges
     fun isValid(): Boolean {
         return name.isNotBlank() && 
                commandId in 0..50 &&
@@ -40,9 +38,7 @@ data class CustomCommand(
     }
 }
 
-/**
- * Default commands available by default
- */
+// Object containing predefined default commands for emergency operations
 object DefaultCommands {
     val EMERGENCY = CustomCommand(
         id = 0,
@@ -88,9 +84,7 @@ object DefaultCommands {
         description = "siren"
     )
     
-    /**
-     * List of default commands
-     */
+    // Returns the complete list of predefined default commands
     fun getDefaultCommands(): List<CustomCommand> {
         return listOf(EMERGENCY, FRONT_LIGHTS, REAR_LIGHTS, SIREN)
     }

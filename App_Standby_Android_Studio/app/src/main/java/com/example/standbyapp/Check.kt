@@ -10,6 +10,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 
+// Simple check screen displaying "Check" text centered on black background
 @Composable
 fun Check(modifier: Modifier = Modifier) {
     Column (

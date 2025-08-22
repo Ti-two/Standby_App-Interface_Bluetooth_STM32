@@ -59,6 +59,7 @@ import kotlinx.coroutines.launch
 
 
 @Composable
+// Manual login screen with text input field for access code verification
 fun LogicScreen(onLoginSuccess: (String) -> Unit, onBackToChoice: (() -> Unit)? = null) {
     val context = LocalContext.current
     val scope = rememberCoroutineScope()
@@ -71,11 +72,6 @@ fun LogicScreen(onLoginSuccess: (String) -> Unit, onBackToChoice: (() -> Unit)? 
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-//        Image(
-//            painter = painterResource(id = R.drawable.loginimage),
-//            contentDescription = "Image",
-//            modifier = Modifier.size(300.dp)
-//        )
         Text(text = "Welcome to Login Page", fontSize = 28.sp, fontWeight = FontWeight.Bold)
         Spacer(modifier = Modifier.height(5.dp))
         Text(text = "Enter your access code", fontSize = 20.sp, fontWeight = FontWeight.Thin)
@@ -156,6 +152,7 @@ fun LogicScreen(onLoginSuccess: (String) -> Unit, onBackToChoice: (() -> Unit)? 
 
 
 @Composable
+// QR code scanner screen using camera preview and ML Kit barcode detection
 fun ScanQrScreen(
     modifier: Modifier = Modifier,
     onQrCodeScanned: (String) -> Unit,
@@ -240,6 +237,7 @@ fun ScanQrScreen(
 }
 
 @OptIn(ExperimentalGetImage::class)
+// Processes camera images to detect and decode QR codes using ML Kit
 private fun processImageProxy(
     scanner: BarcodeScanner,
     imageProxy: ImageProxy,

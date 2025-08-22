@@ -1,117 +1,24 @@
-# Build directories and output files - STM32
-WIFI BLT F105 Debug/
-WIFI BLT F105 Debug WIFI RampeSolaire/
-WIFI BLT F105 Projecteur Test/
-WIFI BLT F105 Release/
-WIFI BLT F105 Release RampeSolaire/
-WIFI BLT L431 Debug/
-WIFI BLT L431 Debug Full/
-WIFI BLT L431 Debug RampeSolaire/
-WIFI BLT L431 Projecteur Test/
-WIFI BLT L431 Rampe Autonome CMD Bleu Test Debug/
-WIFI BLT L431 Rampe Autonome CMD Orange Test Debug/
-WIFI BLT L431 Rampe Autonome CMD Test Debug/
-WIFI BLT L431 Rampe Autonome Test Debug/
-WIFI BLT L431 Rampe Autonome WIFI Test Debug/
-WIFI BLT L431 Release/
-WIFI BLT L431 Release RampeSolaire/
-WIFI L431 MODE PMV DEBUG/
-
-# Compiled Object files
-*.o
-*.obj
-*.elf
-*.bin
-*.hex
-*.map
-*.list
-*.lss
-*.sym
-*.dis
-
-# Linker output
-*.ilk
-*.pdb
-
-# Libraries
-*.lib
-*.a
-*.la
-*.lo
-
-# Shared objects (inc. Windows DLLs)
-*.dll
-*.so
-*.so.*
-*.dylib
-
-# Executables
-*.exe
-*.out
-*.app
-
-# Debug files
-*.dSYM/
-*.su
-*.idb
-
-# IDE files
-.vscode/
-.settings/
-.metadata/
-.project
-.cproject
-*.swp
-*.swo
-*~
-
-# Eclipse CDT-specific
-.autotools
-.cproject
-.project
-.pydevproject
-
-# STM32CubeIDE specific
-.metadata/
-.settings/
-Debug/
-Release/
-
-# GCC dependency files
+# Build directories
+WIFI*/
 *.d
+*.o
+*.su
+*.cyclo
+*.elf
+*.hex
+*.list
+*.map
+makefile
+objects.list
+objects.mk
+sources.mk
+subdir.mk
 
-# Temporary files
-*.tmp
-*.temp
-*.bak
-*.orig
-
-# OS generated files
-.DS_Store
-.DS_Store?
-._*
-.Spotlight-V100
-.Trashes
-ehthumbs.db
-Thumbs.db
-
-# Log files
-*.log
-
-# Perl executables (generated)
+# Perl executables
 perl/*.exe
 perl/*.dll
 
-# Perl temporary files
-*.pl~
-
-# Batch file logs
-*.bat.log
-
-# Android Studio / Gradle (for App_Standby_Android_Studio)
-App_Standby_Android_Studio/.gradle/
-App_Standby_Android_Studio/build/
-App_Standby_Android_Studio/app/build/
-App_Standby_Android_Studio/local.properties
-App_Standby_Android_Studio/.idea/
-App_Standby_Android_Studio/.kotlin/
+# Generated files
+.DS_Store
+*.tmp
+*~

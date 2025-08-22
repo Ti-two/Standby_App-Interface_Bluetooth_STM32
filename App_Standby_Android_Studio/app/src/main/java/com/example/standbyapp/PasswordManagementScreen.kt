@@ -58,6 +58,7 @@ import kotlinx.coroutines.launch
 import com.example.standbyapp.Bluetooth.BluetoothViewModel
 
 @Composable
+// Screen for managing access codes with add/delete functionality and bluetooth code generation
 fun PasswordManagementScreen(bluetoothViewModel: BluetoothViewModel? = null) {
     val context = LocalContext.current
     val scope = rememberCoroutineScope()

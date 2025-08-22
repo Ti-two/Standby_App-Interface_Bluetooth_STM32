@@ -14,7 +14,7 @@ import com.example.standbyapp.R
 import com.example.standbyapp.Settings.CustomCommand
 import com.example.standbyapp.Settings.CustomCommandViewModel
 
-// ViewModel gérant les options basé sur les commandes personnalisées
+// ViewModel managing control panel options based on custom commands with Bluetooth integration
 class ControlPanelViewModel(
     private val context: Context,
     private val customCommandViewModel: CustomCommandViewModel
@@ -39,9 +39,7 @@ class ControlPanelViewModel(
         }
     }
     
-    /**
-     * Met à jour les options basées sur les commandes personnalisées
-     */
+    // Updates options list based on enabled custom commands from settings
     private fun updateOptionsFromCustomCommands(customCommands: List<CustomCommand>) {
         val options = customCommands.filter { it.isEnabled }.map { command ->
             Option(
@@ -60,39 +58,29 @@ class ControlPanelViewModel(
         _options.value = options
     }
     
-    /**
-     * Permet d'activer ou désactiver une option
-     */
+    // Toggles the enabled state of a control option
     fun toggleOption(optionId: Int, enabled: Boolean) {
         customCommandViewModel.toggleCommandEnabled(optionId, enabled)
     }
     
-    /**
-     * Récupère la commande personnalisée associée à une option
-     */
+    // Returns the custom command associated with a specific option ID
     fun getCustomCommand(optionId: Int): CustomCommand? {
         return customCommandViewModel.getCommandById(optionId)
     }
     
-    /**
-     * Met à jour l'état d'un bouton
-     */
+    // Updates the active state of a specific button
     fun updateButtonState(buttonId: Int, isActive: Boolean) {
         val currentStates = _buttonStates.value.toMutableMap()
         currentStates[buttonId] = isActive
         _buttonStates.value = currentStates
     }
     
-    /**
-     * Récupère l'état actuel d'un bouton
-     */
+    // Returns the current state of a specific button
     fun getButtonState(buttonId: Int): Boolean {
         return _buttonStates.value[buttonId] ?: false
     }
     
-    /**
-     * Envoie les commandes personnalisées via Bluetooth
-     */
+    // Sends custom commands via Bluetooth with current button states
     fun sendBluetoothCommands(bluetoothViewModel: com.example.standbyapp.Bluetooth.BluetoothViewModel) {
         val enabledCommands = customCommandViewModel.customCommands.value.filter { it.isEnabled }
         val currentStates = _buttonStates.value
@@ -100,9 +88,7 @@ class ControlPanelViewModel(
         bluetoothViewModel.sendCustomCommandsData(enabledCommands, currentStates)
     }
     
-    /**
-     * Récupère les commandes personnalisées activées et leurs états pour le keep-alive
-     */
+    // Returns enabled commands and current states for Bluetooth keep-alive transmission
     fun getKeepAliveData(): Pair<List<CustomCommand>, Map<Int, Boolean>> {
         val enabledCommands = customCommandViewModel.customCommands.value.filter { it.isEnabled }
         val currentStates = _buttonStates.value

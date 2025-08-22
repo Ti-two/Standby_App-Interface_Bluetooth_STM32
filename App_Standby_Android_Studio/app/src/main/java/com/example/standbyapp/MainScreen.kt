@@ -53,6 +53,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 @Composable
+// Main navigation screen with bottom bar and content switching based on selected tab
 fun MainScreen(
     viewModel: NewControlPanelViewModel, 
     customCommandViewModel: com.example.standbyapp.Settings.CustomCommandViewModel,
@@ -111,6 +112,7 @@ fun MainScreen(
 }
 
 @Composable
+// Displays different screens based on selected navigation tab index
 fun ContentScreen(
     modifier: Modifier = Modifier, 
     selectedIndex: Int, 
@@ -129,7 +131,7 @@ fun ContentScreen(
     }
 }
 
-// Modèle représentant une option possible
+// Data class representing a configurable control option with visual properties
 data class Option(
     val id: Int,
     val label: String,
@@ -143,6 +145,7 @@ data class Option(
 
 
 
+// ViewModel managing control panel options persistence using DataStore
 class ControlPanelViewModel(private val context: Context) : ViewModel() {
 
     private val ENABLED_OPTIONS_KEY = stringSetPreferencesKey("enabled_options")
@@ -154,6 +157,7 @@ class ControlPanelViewModel(private val context: Context) : ViewModel() {
         loadOptions()
     }
 
+    // Loads options from DataStore or initializes with default values
     private fun loadOptions() {
         viewModelScope.launch {
             val prefs = context.dataStore.data.first()
@@ -182,6 +186,7 @@ class ControlPanelViewModel(private val context: Context) : ViewModel() {
         }
     }
 
+    // Updates option state and persists changes to DataStore
     fun toggleOption(optionId: Int, enabled: Boolean) {
         val updated = _options.value.map {
             if (it.id == optionId) it.copy(enabled = enabled) else it
@@ -191,6 +196,7 @@ class ControlPanelViewModel(private val context: Context) : ViewModel() {
         saveEnabledOptions(updated.filter { it.enabled }.map { it.id.toString() }.toSet())
     }
 
+    // Saves enabled option IDs to DataStore for persistence
     private fun saveEnabledOptions(enabledIds: Set<String>) {
         viewModelScope.launch {
             context.dataStore.edit { prefs ->
@@ -203,6 +209,7 @@ class ControlPanelViewModel(private val context: Context) : ViewModel() {
 
 
 @Composable
+// Screen wrapper that displays the settings screen for option configuration
 fun OptionSelectorScreen(
     viewModel: NewControlPanelViewModel,
     customCommandViewModel: com.example.standbyapp.Settings.CustomCommandViewModel,

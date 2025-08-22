@@ -63,6 +63,7 @@ import androidx.compose.ui.text.style.TextAlign
 
 
 @Composable
+// Dynamic control panel displaying enabled options as interactive buttons with Bluetooth integration
 fun DynamicControlPanel(
     viewModel: ControlPanelViewModel, 
     bluetoothViewModel: BluetoothViewModel? = null

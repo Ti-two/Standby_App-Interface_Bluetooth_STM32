@@ -4,6 +4,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
 
+// Data class defining control panel option configuration with visual and functional properties
 data class Option(
     val id: Int,
     val label: String,

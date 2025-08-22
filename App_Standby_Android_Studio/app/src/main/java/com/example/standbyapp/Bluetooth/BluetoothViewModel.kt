@@ -18,6 +18,7 @@ import com.example.standbyapp.ControlPanel.ButtonStateViewModel
 import com.example.standbyapp.dataStore
 import kotlinx.coroutines.flow.first
 
+// ViewModel managing Bluetooth connection, device scanning and STM32 communication
 class BluetoothViewModel(application: Application) : AndroidViewModel(application),
     BluetoothScanCallback {
     
@@ -55,9 +56,7 @@ class BluetoothViewModel(application: Application) : AndroidViewModel(applicatio
         loadCurrentAuthCode()
     }
     
-    /**
-     * Load the current authentication code from DataStore and update the scanner
-     */
+    // Loads authentication code from DataStore and configures scanner
     private fun loadCurrentAuthCode() {
         viewModelScope.launch {
             try {
@@ -73,24 +72,18 @@ class BluetoothViewModel(application: Application) : AndroidViewModel(applicatio
         }
     }
     
-    /**
-     * Update the authentication code manually
-     */
+    // Updates the authentication code for Bluetooth communication
     fun updateAuthenticationCode(newCode: String) {
         bluetoothScanner.setAuthenticationCode(newCode)
         Log.d("BluetoothViewModel", "Authentication code updated to: $newCode")
     }
     
-    /**
-     * Reload authentication code from DataStore
-     */
+    // Reloads authentication code from persistent storage
     fun reloadAuthenticationCode() {
         loadCurrentAuthCode()
     }
     
-    /**
-     * Définit le ButtonStateViewModel pour les keep-alive avec états réels
-     */
+    // Sets the ButtonStateViewModel for keep-alive messages with real button states
     fun setButtonStateViewModel(buttonStateViewModel: ButtonStateViewModel?) {
         buttonStateViewModel?.let {
             bluetoothScanner.setButtonStateViewModel(it)

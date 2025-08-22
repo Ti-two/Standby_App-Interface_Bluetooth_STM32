@@ -65,6 +65,7 @@ class MainActivity : ComponentActivity() {
 
     private val LOGGED_IN_KEY = booleanPreferencesKey("logged_in")
 
+    // Main entry point of the app, sets up the UI theme and window properties
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         WindowCompat.setDecorFitsSystemWindows(window, false)
@@ -95,6 +96,7 @@ class MainActivity : ComponentActivity() {
 
 @OptIn(ExperimentalGetImage::class)
 @Composable
+// Main content composable that handles login state and navigation
 fun AppContent() {
     val context = LocalContext.current
     val scope = rememberCoroutineScope()
@@ -152,6 +154,7 @@ fun AppContent() {
 }
 
 @Composable
+// Requests camera permission and displays QR scanner when granted
 fun QrScreenWithPermission(
     onQrCodeScanned: (String) -> Unit,
     onBackToChoice: (() -> Unit)? = null
@@ -206,6 +209,7 @@ fun QrScreenWithPermission(
 }
 
 @Composable
+// Login screen with options to choose between QR scan or manual entry
 fun LoginChoiceScreen(
     onQrSuccess: (String) -> Unit,
     onManualLoginSuccess: (String) -> Unit

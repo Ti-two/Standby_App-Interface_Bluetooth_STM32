@@ -2,10 +2,7 @@ package com.example.stmbluetooth
 
 import android.util.Log
 
-/**
- * Gestionnaire de commandes SPP pour communication avec STM32
- * Implémente le protocole : //[TAILLE] [FOURCC] [UNLOCK_KEY] [CRC] [DONNÉES] [CRC_FINAL]
- */
+// STM32 command manager implementing SPP protocol for Bluetooth communication
 object STM32Commands {
     private const val TAG = "STM32Commands"
     
@@ -21,9 +18,7 @@ object STM32Commands {
     
     private var unlockKey: ByteArray = byteArrayOf(0x02, 0x02, 0x02, 0x02,0x02, 0x02, 0x02, 0x02)
     
-    /**
-     * Met à jour la clé de déverrouillage après authentification
-     */
+    // Updates the unlock key used for authenticated communication
     fun setUnlockKey(key: ByteArray) {
         if (key.size == 8) {
             unlockKey = key.copyOf()
@@ -33,10 +28,7 @@ object STM32Commands {
         Log.w(TAG, "Invalid key size: ${key.size}. Expected 8 bytes.")
     }
     }
-    /**
- * Construit une trame SPP complète
- * Format: [FourCC binaire] + [Taille+Clé+Data+Checksum en ASCII continu]
- */
+    // Builds complete SPP frame with binary header and ASCII hex payload
 fun buildSPPFrame(fourCC: Int, data: ByteArray = byteArrayOf()): ByteArray {
     // 1. Construire d'abord la trame binaire complète pour calculer les valeurs
     val totalSize = 4 + 2 + 8 + data.size + 2 // Header + Size + Key + Data + Checksum
@@ -110,9 +102,7 @@ fun buildSPPFrame(fourCC: Int, data: ByteArray = byteArrayOf()): ByteArray {
     return finalFrame
 }
 
-/**
- * Calcul du CRC16 (algorithme STM32)
- */
+// Calculates CRC16 checksum using STM32 compatible algorithm
 private fun calculateCRC16(data: ByteArray, start: Int, length: Int): Int {
     var crc = 0xFFFF
     for (i in start until start + length) {
@@ -128,21 +118,14 @@ private fun calculateCRC16(data: ByteArray, start: Int, length: Int): Int {
     return crc and 0xFFFF
 }
   
-    /**
-     * Crée une demande d'authentification
-     */
+    // Creates authentication request command for initial pairing
     fun createAuthRequest(): ByteArray {
         return buildSPPFrame(BluetoothProtocolCommands.WRD_KEY_ASK_BT)
     }
     
 
     
-    /**
-     * Crée une commande de bouton
-     * @param buttonId ID du bouton (0-255)
-     * @param isPressed true si le bouton est pressé
-     * @param duration Durée en millisecondes
-     */
+    // Creates button command with specified ID, state and duration
     fun createButtonCommand(buttonId: Int, isPressed: Boolean, duration: Int = 500): ByteArray {
         val commandData = ByteArray(4)
         commandData[0] = buttonId.toByte()                    // ID bouton

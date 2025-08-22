@@ -5,9 +5,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 
-/**
- * ViewModel pour gérer les états des boutons du panneau de contrôle
- */
+// ViewModel managing button states for control panel with individual and collective state tracking
 class ButtonStateViewModel : ViewModel() {
     
     // États des boutons
@@ -27,9 +25,7 @@ class ButtonStateViewModel : ViewModel() {
     private val _sirenActive = MutableStateFlow(false)
     val sirenActive = _sirenActive.asStateFlow()
     
-    /**
-     * Met à jour l'état d'un bouton spécifique
-     */
+    // Updates the state of a specific button and syncs individual state variables
     fun updateButtonState(buttonId: Int, isActive: Boolean) {
         _buttonStates.update { currentStates ->
             currentStates.toMutableMap().apply {
@@ -46,16 +42,12 @@ class ButtonStateViewModel : ViewModel() {
         }
     }
     
-    /**
-     * Récupère l'état d'un bouton spécifique
-     */
+    // Returns the current state of a specific button by ID
     fun getButtonState(buttonId: Int): Boolean {
         return _buttonStates.value[buttonId] ?: false
     }
     
-    /**
-     * Récupère tous les états sous forme de liste pour STM32Commands
-     */
+    // Returns all button states as pairs for STM32 command transmission
     fun getAllButtonStates(): List<Pair<Int, Boolean>> {
         return listOf(
             Pair(0, _emergencyActive.value),
@@ -65,9 +57,7 @@ class ButtonStateViewModel : ViewModel() {
         )
     }
     
-    /**
-     * Réinitialise tous les boutons
-     */
+    // Resets all buttons to inactive state
     fun resetAllButtons() {
         _emergencyActive.value = false
         _frontLightsActive.value = false
