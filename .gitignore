@@ -1,4 +1,4 @@
-# Build directories and output files
+# Build directories and output files - STM32
 WIFI BLT F105 Debug/
 WIFI BLT F105 Debug WIFI RampeSolaire/
 WIFI BLT F105 Projecteur Test/
@@ -98,8 +98,20 @@ Thumbs.db
 # Log files
 *.log
 
+# Perl executables (generated)
+perl/*.exe
+perl/*.dll
+
 # Perl temporary files
 *.pl~
 
 # Batch file logs
 *.bat.log
+
+# Android Studio / Gradle (for App_Standby_Android_Studio)
+App_Standby_Android_Studio/.gradle/
+App_Standby_Android_Studio/build/
+App_Standby_Android_Studio/app/build/
+App_Standby_Android_Studio/local.properties
+App_Standby_Android_Studio/.idea/
+App_Standby_Android_Studio/.kotlin/
